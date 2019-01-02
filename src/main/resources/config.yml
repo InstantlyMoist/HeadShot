@@ -1,0 +1,16 @@
+# Headshot
+
+EnchantmentSettings:
+  Enabled: true
+  DisplayName: '&7Headshot'
+  MinimumLevel: 10
+  Chance: 0.1
+
+Headshot:
+  DamageModifier: 1.5
+  SnowballDamage: 5 # Only does damage on a headshot, -1 to disable
+
+Messages:
+  Headshot: '&a&lYou headshotted %player%'
+  BeenHeadshot: '&a&lYou have been headshotted by %player%'
+  CantHeadshotSelf: '&a&lDon''t be so suicidal, man. Please call 1-800-273-8255'

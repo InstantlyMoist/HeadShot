@@ -1,0 +1,4 @@
+name: HeadShot
+version: 2.0
+description: A simple, but effective HeadShot plugin!
+main: me.kyllian.headshot.HeadShotPlugin
