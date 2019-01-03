@@ -1,4 +1,10 @@
 # Headshot
+#
+# Particles: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Particle.html
+# Sounds: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+#
+# Thanks for downloading the plugin! Make sure to rate it 5 stars if you enjoy it.
+# If you somehow have issues with the plugin, make sure to join our discord: https://discord.gg/zgKr2YM
 
 EnchantmentSettings:
   Enabled: true
@@ -9,6 +15,10 @@ EnchantmentSettings:
 Headshot:
   DamageModifier: 1.5
   SnowballDamage: 5 # Only does damage on a headshot, -1 to disable
+  Particle: EXPLOSION_HUGE
+  Sound: ENTITY_CAT_HISS
+  DisabledIn:
+    - 'world_the_end'
 
 Messages:
   Headshot: '&a&lYou headshotted %player%'
