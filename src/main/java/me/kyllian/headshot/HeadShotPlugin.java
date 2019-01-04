@@ -5,16 +5,14 @@ import me.kyllian.headshot.listeners.EnchantItemListener;
 import me.kyllian.headshot.listeners.EntityDamageByEntityListener;
 import me.kyllian.headshot.listeners.EntityShootBowListener;
 import me.kyllian.headshot.utils.MessageHandler;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 
 public class HeadShotPlugin extends JavaPlugin {
 
@@ -22,6 +20,7 @@ public class HeadShotPlugin extends JavaPlugin {
     private MessageHandler messageHandler;
     public List<UUID> allowedArrows;
     private boolean enchantmentEnabled;
+    public int numberOfHeadShots = 0;
 
     public void onEnable() {
         getConfig().options().copyDefaults(true);
@@ -35,6 +34,16 @@ public class HeadShotPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EnchantItemListener(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityShootBowListener(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageByEntityListener(this), this);
+
+        Metrics metrics = new Metrics(this);
+
+        // Optional: Add custom charts
+        metrics.addCustomChart(new Metrics.SingleLineChart("number_of_headshots_made", new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                return numberOfHeadShots;
+            }
+        }));
     }
 
     public HeadShotEnchant getHeadShotEnchant() {

@@ -74,6 +74,7 @@ public class EntityDamageByEntityListener implements Listener {
             if (hasSound) shooter.playSound(shooter.getLocation(), sound, 1f, 1f);
             if (!Bukkit.getVersion().contains("1.7")) spawnParticle(event.getEntity().getLocation(), 1);
             if (event.getEntity() instanceof Player) ((Player) event.getEntity()).sendMessage(plugin.getMessageHandler().getBeenHeadshotMessage(shooter));
+            plugin.numberOfHeadShots++;
         }
 
     }
