@@ -61,7 +61,7 @@ public class EntityDamageByEntityListener implements Listener {
         // TODO: Maybe add a sound or particle effect (?)
         if (arrowY - damagedY > 1.4D) {
             if (shooter == event.getEntity()) {
-                shooter.sendMessage(plugin.getMessageHandler().getCantHeadshotSelfMessage());
+
                 event.setCancelled(true);
                 return;
             }
@@ -70,10 +70,10 @@ public class EntityDamageByEntityListener implements Listener {
             if (headShotEvent.isCancelled()) return;
             if (arrow instanceof Arrow) event.setDamage(event.getDamage() * damageModifer);
             if (arrow instanceof Snowball && snowballDamage != -1) event.setDamage(snowballDamage);
-            shooter.sendMessage(plugin.getMessageHandler().getHeadshotMessage(event.getEntity()));
+            plugin.getMessageHandler().sendHeadshotMessage(event.getEntity());
             if (hasSound) shooter.playSound(shooter.getLocation(), sound, 1f, 1f);
             if (!Bukkit.getVersion().contains("1.7")) spawnParticle(event.getEntity().getLocation(), 1);
-            if (event.getEntity() instanceof Player) ((Player) event.getEntity()).sendMessage(plugin.getMessageHandler().getBeenHeadshotMessage(shooter));
+            if (event.getEntity() instanceof Player) plugin.getMessageHandler().sendBeenHeadshotMessage(shooter);
             plugin.numberOfHeadShots++;
         }
 

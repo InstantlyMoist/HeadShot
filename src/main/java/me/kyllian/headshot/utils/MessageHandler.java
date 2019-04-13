@@ -13,16 +13,19 @@ public class MessageHandler {
         this.plugin = plugin;
     }
 
-    public String getHeadshotMessage(Entity entity) {
-        return MessageUtils.colorTranslate(plugin.getConfig().getString("Messages.Headshot").replace("%player%", entity instanceof Player ? ((Player) entity).getName() : getEntityName(entity)));
+    public void sendHeadshotMessage(Entity entity) {
+        String message = MessageUtils.colorTranslate(plugin.getConfig().getString("Messages.Headshot").replace("%player%", entity instanceof Player ? ((Player) entity).getName() : getEntityName(entity)));
+        if (!message.equalsIgnoreCase("none")) entity.sendMessage(message);
     }
 
-    public String getBeenHeadshotMessage(Player player) {
-        return MessageUtils.colorTranslate(plugin.getConfig().getString("Messages.BeenHeadshot").replace("%player%", player.getName()));
+    public void sendBeenHeadshotMessage(Player player) {
+        String message = MessageUtils.colorTranslate(plugin.getConfig().getString("Messages.BeenHeadshot").replace("%player%", player.getName()));
+        if (!message.equalsIgnoreCase("none")) player.sendMessage(message);
     }
 
-    public String getCantHeadshotSelfMessage() {
-        return MessageUtils.colorTranslate(plugin.getConfig().getString("Messages.CantHeadshotSelf"));
+    public void sendCantHeadshotSelfMessage(Player player) {
+        String message = MessageUtils.colorTranslate(plugin.getConfig().getString("Messages.CantHeadshotSelf"));
+        if (!message.equalsIgnoreCase("none")) player.sendMessage(message);
     }
 
     public String getEntityName(Entity entity) {
